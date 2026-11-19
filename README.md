@@ -45,6 +45,6 @@
    ```
 
 ### Деплой на GitHub Pages:
-1. Перейдите в **Settings** репозитория на GitHub.
-2. В разделе **Pages** выберите ветку `main` (папка `/root`).
-3. Нажмите **Save** — сайт будет опубликован по адресу `https://<username>.github.io/<repo-name>/`.
+Сайт автоматически опубликован и работает онлайн:
+- **Живой сайт:** `https://orinmaksim348-cloud.github.io/hookah/`
+- **Репозиторий:** `https://github.com/orinmaksim348-cloud/hookah`
