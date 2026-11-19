@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="ru" data-type="place" data-motion="on" data-radius="soft">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="page-type" content="place">
+  <meta name="site-kind" content="other">
+  <meta name="page-kind" content="place">
+  
+  <title>Hookah Lounge — Кальян-бар и спортбар | Шахты, Советская 188А</title>
+  <meta name="description" content="Кальян-бар Hookah Lounge в городе Шахты. Советская ул., 188А. Рейтинг 5.0 на Яндекс Картах. Камерный зал до 6 столов, PlayStation 5, 6 больших экранов, китайский чай и европейская кухня. Бронь: +7 (995) 091-91-92.">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Hookah Lounge — Кальян-бар и спортбар в Шахтах">
+  <meta property="og:description" content="Рейтинг 5.0. Камерный зал до 6 столов, приставки PS5, трансляции на 6 экранах, китайский чай. Советская ул., 188А.">
+  <meta property="og:image" content="assets/images/hero-lounge.jpg">
+  <meta property="og:url" content="https://yandex.ru/maps/org/hookah_lounge/227920984604/">
+
+  <!-- Fonts: Plus Jakarta Sans & Space Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BarOrPub",
+    "name": "Hookah Lounge",
+    "image": "assets/images/hero-lounge.jpg",
+    "telephone": "+79950919192",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Советская ул., 188А",
+      "addressLocality": "Шахты",
+      "addressRegion": "Ростовская область",
+      "addressCountry": "RU"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 47.713354,
+      "longitude": 40.206643
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Sunday"],
+        "opens": "18:00",
+        "closes": "03:30"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Friday", "Saturday"],
+        "opens": "18:00",
+        "closes": "04:30"
+      }
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "51"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Subtle Ambient Smoke & Ember Canvas -->
+  <canvas id="smoke-canvas" class="smoke-canvas" aria-hidden="true"></canvas>
+
+  <!-- Clean Header Navigation -->
+  <header class="header" id="header">
+    <div class="wrap header__inner">
+      
+      <!-- Brand Logo -->
+      <a href="#hero" class="brand" aria-label="Hookah Lounge">
+        <span class="brand__title">HOOKAH LOUNGE</span>
+        <span class="brand__tag">ШАХТЫ · СОВЕТСКАЯ 188А</span>
+      </a>
+
+      <!-- Desktop Nav with Strict Non-wrapping Links -->
+      <nav class="nav" aria-label="Навигация по сайту">
+        <a href="#about" class="nav__link">О лаунже</a>
+        <a href="#features" class="nav__link">Атмосфера</a>
+        <a href="#gallery" class="nav__link">Интерьер</a>
+        <a href="#reviews" class="nav__link">Отзывы <span class="nav__badge">5.0</span></a>
+        <a href="#faq" class="nav__link">Вопросы</a>
+        <a href="#visit" class="nav__link">Контакты</a>
+      </nav>
+
+      <!-- Header Action Controls -->
+      <div class="header__cta">
+        <!-- Compact Info Drawer Trigger (Replaces crowded status & hours) -->
+        <button class="btn-info-drawer" id="open-info-drawer" aria-label="Информация и график работы">
+          <span class="live-dot" id="header-status-dot"></span>
+          <span class="info-drawer-text" id="header-status-text">Инфо & График</span>
+          <i data-lucide="panel-right-open" class="btn__icon-mini"></i>
+        </button>
+
+        <!-- Direct Booking Action -->
+        <button class="btn btn--primary btn--sm" id="book-btn-nav">
+          <span>Забронировать стол</span>
+        </button>
+      </div>
+
+      <!-- Burger Menu Trigger for Mobile -->
+      <button class="burger" id="burger" aria-label="Открыть меню">
+        <span></span><span></span>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- SIDE INFO DRAWER (Боковое меню со всей скомпонованной информацией) -->
+  <aside class="info-drawer" id="info-drawer" aria-hidden="true" role="dialog" aria-label="Информация о заведении">
+    <div class="info-drawer__overlay" id="info-drawer-overlay"></div>
+    <div class="info-drawer__panel card">
+      
+      <div class="info-drawer__head">
+        <div>
+          <span class="section-kicker">О заведении</span>
+          <h3 class="info-drawer__title">Hookah Lounge</h3>
+          <span class="info-drawer__subtitle">г. Шахты, ул. Советская, 188А</span>
+        </div>
+        <button class="info-drawer__close" id="close-info-drawer" aria-label="Закрыть боковое меню">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+
+      <div class="info-drawer__body">
+        
+        <!-- Live Status Banner -->
+        <div class="drawer-status-card" id="drawer-status-card">
+          <div class="status-indicator-row">
+            <span class="live-dot" id="drawer-live-dot"></span>
+            <strong class="status-title" id="drawer-status-title">Проверка времени...</strong>
+          </div>
+          <span class="status-sub" id="drawer-status-sub">Пн-Чт, Вс: 18:00–03:30 · Пт-Сб: 18:00–04:30</span>
+        </div>
+
+        <!-- Weekly Schedule Table -->
+        <div class="drawer-section">
+          <h4 class="drawer-section-title"><i data-lucide="clock"></i> Режим работы</h4>
+          <div class="schedule-table">
+            <div class="schedule-row" data-day="1">
+              <span class="s-day">Понедельник</span>
+              <span class="s-time">18:00 — 03:30</span>
+            </div>
+            <div class="schedule-row" data-day="2">
+              <span class="s-day">Вторник</span>
+              <span class="s-time">18:00 — 03:30</span>
+            </div>
+            <div class="schedule-row" data-day="3">
+              <span class="s-day">Среда</span>
+              <span class="s-time">18:00 — 03:30</span>
+            </div>
+            <div class="schedule-row" data-day="4">
+              <span class="s-day">Четверг</span>
+              <span class="s-time">18:00 — 03:30</span>
+            </div>
+            <div class="schedule-row s-weekend" data-day="5">
+              <span class="s-day">Пятница <span class="tag-night">Weekend</span></span>
+              <span class="s-time">18:00 — 04:30</span>
+            </div>
+            <div class="schedule-row s-weekend" data-day="6">
+              <span class="s-day">Суббота <span class="tag-night">Weekend</span></span>
+              <span class="s-time">18:00 — 04:30</span>
+            </div>
+            <div class="schedule-row" data-day="0">
+              <span class="s-day">Воскресенье</span>
+              <span class="s-time">18:00 — 03:30</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Contacts -->
+        <div class="drawer-section">
+          <h4 class="drawer-section-title"><i data-lucide="phone"></i> Связь и бронь</h4>
+          <div class="drawer-contact-cards">
+            <a href="tel:+79950919192" class="drawer-contact-item">
+              <div class="c-icon"><i data-lucide="phone-call"></i></div>
+              <div>
+                <span class="c-lbl">Телефон для бронирования</span>
+                <strong class="c-val">+7 (995) 091-91-92</strong>
+              </div>
+            </a>
+            <a href="https://yandex.ru/maps/org/hookah_lounge/227920984604/?ll=40.206678%2C47.713402&z=16" target="_blank" rel="noopener noreferrer" class="drawer-contact-item">
+              <div class="c-icon"><i data-lucide="map-pin"></i></div>
+              <div>
+                <span class="c-lbl">Яндекс Карты (Рейтинг 5.0)</span>
+                <strong class="c-val">Советская ул., 188А, Шахты</strong>
+              </div>
+            </a>
+            <a href="https://vk.com/hookah_lounge_shahty" target="_blank" rel="noopener noreferrer" class="drawer-contact-item">
+              <div class="c-icon"><i data-lucide="message-circle"></i></div>
+              <div>
+                <span class="c-lbl">Официальное сообщество</span>
+                <strong class="c-val">vk.com/hookah_lounge_shahty</strong>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Highlights & Rules -->
+        <div class="drawer-section">
+          <h4 class="drawer-section-title"><i data-lucide="shield-check"></i> Особенности и правила</h4>
+          <ul class="drawer-features-list">
+            <li><i data-lucide="check"></i> <span>Строго 18+ (вход для совершеннолетних)</span></li>
+            <li><i data-lucide="check"></i> <span>Камерный зал: до 6 столов (рекомендуем бронь)</span></li>
+            <li><i data-lucide="check"></i> <span>PlayStation 5 и 6 больших экранов для кино и матчей</span></li>
+            <li><i data-lucide="check"></i> <span>Европейская и итальянская кухня, доставка Яндекс.Еда</span></li>
+            <li><i data-lucide="check"></i> <span>Коллекционный китайский чай и напитки</span></li>
+            <li><i data-lucide="check"></i> <span>Оплата картой и наличными, бесплатный Wi-Fi</span></li>
+            <li><i data-lucide="ban" class="icon-ban"></i> <span>Запрещено посещение с животными</span></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="info-drawer__foot">
+        <button class="btn btn--primary full-width" id="drawer-book-trigger">
+          <span>Забронировать стол</span>
+          <i data-lucide="arrow-right"></i>
+        </button>
+      </div>
+
+    </div>
+  </aside>
+
+  <main>
+    <!-- 1. HERO SECTION (Clean Balance, Non-wrapping Text) -->
+    <section class="section section--hero" id="hero" data-enter>
+      <div class="wrap hero-grid">
+        
+        <div class="hero-text-col">
+          <div class="hero-eyebrow">
+            <span class="eyebrow-item">Кальян-бар & спортбар</span>
+            <span class="eyebrow-dot">·</span>
+            <span class="eyebrow-item rating-accent"><i data-lucide="star"></i> Рейтинг 5.0 (Яндекс Карты)</span>
+          </div>
+
+          <h1 class="hero-heading">
+            Камерный лаунж для ценителей густого пара, PlayStation 5 и кино.
+          </h1>
+
+          <p class="hero-lead">
+            Отдельные зоны отдыха в центре города Шахты: мягкие глубокие диваны, приглушенный свет, 6 больших экранов со спортивными матчами, коллекционный китайский чай и авторские миксы табака.
+          </p>
+
+          <div class="hero-actions">
+            <button class="btn btn--primary btn--lg" id="book-btn-hero">
+              <span>Забронировать стол</span>
+              <i data-lucide="arrow-right" class="btn__icon"></i>
+            </button>
+            <a href="https://yandex.ru/maps/org/hookah_lounge/227920984604/?ll=40.206678%2C47.713402&z=16" target="_blank" rel="noopener noreferrer" class="btn btn--secondary btn--lg">
+              <i data-lucide="map-pin" class="btn__icon"></i>
+              <span>Советская ул., 188А</span>
+            </a>
+          </div>
+
+          <!-- Verified Key Indicators -->
+          <div class="hero-key-facts">
+            <div class="fact-item">
+              <div class="fact-val" data-counter="5.0">5.0 ★</div>
+              <div class="fact-desc">51+ отзыв на картах</div>
+            </div>
+            <div class="fact-item">
+              <div class="fact-val" data-counter="6">6</div>
+              <div class="fact-desc">экранов со спортом</div>
+            </div>
+            <div class="fact-item">
+              <div class="fact-val">PS5</div>
+              <div class="fact-desc">зона с консолями</div>
+            </div>
+            <div class="fact-item">
+              <div class="fact-val">до 6</div>
+              <div class="fact-desc">столов в зале</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-photo-col">
+          <div class="photo-frame m-zoom tilt-card">
+            <img src="assets/images/hero-lounge.jpg" alt="Интерьер Hookah Lounge в Шахтах" class="photo-frame__img" loading="eager">
+            <div class="photo-frame__badge">
+              <span class="status-marker"></span>
+              <span>г. Шахты, ул. Советская, 188А</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <a href="#about" class="hero-scroll-hint" aria-label="Прокрутить вниз">
+        <span class="scroll-mouse"><span class="scroll-wheel"></span></span>
+        <span class="scroll-text">Листать</span>
+      </a>
+    </section>
+
+    <!-- TICKER STRIP -->
+    <div class="ticker-strip" aria-label="Преимущества">
+      <div class="ticker-content">
+        <span class="ticker-node"><i data-lucide="check"></i> РЕЙТИНГ 5.0 НА ЯНДЕКС КАРТАХ</span>
+        <span class="ticker-node"><i data-lucide="check"></i> PLAYSTATION 5</span>
+        <span class="ticker-node"><i data-lucide="check"></i> 6 ЭКРАНОВ 4K</span>
+        <span class="ticker-node"><i data-lucide="check"></i> КИТАЙСКИЙ ЧАЙ</span>
+        <span class="ticker-node"><i data-lucide="check"></i> ЕВРОПЕЙСКАЯ КУХНЯ</span>
+        <span class="ticker-node"><i data-lucide="check"></i> ДОСТАВКА ЯНДЕКС ЕДА</span>
+        <span class="ticker-node"><i data-lucide="check"></i> СТРОГО 18+</span>
+        <span class="ticker-node"><i data-lucide="check"></i> ОПЛАТА КАРТОЙ</span>
+        <!-- duplicate for infinite loop -->
+        <span class="ticker-node"><i data-lucide="check"></i> РЕЙТИНГ 5.0 НА ЯНДЕКС КАРТАХ</span>
+        <span class="ticker-node"><i data-lucide="check"></i> PLAYSTATION 5</span>
+        <span class="ticker-node"><i data-lucide="check"></i> 6 ЭКРАНОВ 4K</span>
+        <span class="ticker-node"><i data-lucide="check"></i> КИТАЙСКИЙ ЧАЙ</span>
+        <span class="ticker-node"><i data-lucide="check"></i> ЕВРОПЕЙСКАЯ КУХНЯ</span>
+        <span class="ticker-node"><i data-lucide="check"></i> ДОСТАВКА ЯНДЕКС ЕДА</span>
+        <span class="ticker-node"><i data-lucide="check"></i> СТРОГО 18+</span>
+        <span class="ticker-node"><i data-lucide="check"></i> ОПЛАТА КАРТОЙ</span>
+      </div>
+    </div>
+
+    <!-- 2. ABOUT THE PLACE SECTION (Bento Grid) -->
+    <section class="section" id="about">
+      <div class="wrap">
+        <div class="section-head reveal-on-scroll">
+          <span class="section-kicker">О заведении</span>
+          <h2 class="section-title">Камерная обстановка без лишнего шума</h2>
+          <p class="section-desc">
+            Всего до шести посадочных зон в зале, чтобы каждый гость чувствовал себя приватно и комфортно — будь то романтический вечер или отдых в компании друзей.
+          </p>
+        </div>
+
+        <div class="bento-grid">
+          
+          <div class="card bento-card bento-card--large tilt-card reveal-on-scroll">
+            <div class="card__visual m-zoom">
+              <img src="assets/images/ps5-zone.jpg" alt="PlayStation 5 зона в Hookah Lounge" loading="lazy">
+            </div>
+            <div class="card__body">
+              <span class="card__tag">Игры и развлечения</span>
+              <h3 class="card__title">PlayStation 5 и матчи на 6 экранах</h3>
+              <p class="card__text">
+                Современные игровые приставки с топовыми симуляторами и файтингами. 6 широкоформатных дисплеев позволяют комфортно смотреть прямые трансляции футбола и турниры UFC с любого столика.
+              </p>
+            </div>
+          </div>
+
+          <div class="card bento-card tilt-card reveal-on-scroll">
+            <div class="card__visual m-zoom">
+              <img src="assets/images/cozy-booth.jpg" alt="Уютная зона с диванами" loading="lazy">
+            </div>
+            <div class="card__body">
+              <span class="card__tag">Интерьер</span>
+              <h3 class="card__title">Приглушённый свет и мягкие диваны</h3>
+              <p class="card__text">
+                Глубокие удобные посадочные места, зонированное освещение и стильная лаунж-эстетика для спокойного времяпрепровождения.
+              </p>
+            </div>
+          </div>
+
+          <div class="card bento-card tilt-card reveal-on-scroll">
+            <div class="card__visual m-zoom">
+              <img src="assets/images/tea-bar.jpg" alt="Чайная карта и бар" loading="lazy">
+            </div>
+            <div class="card__body">
+              <span class="card__tag">Бар и кухня</span>
+              <h3 class="card__title">Китайский чай, напитки и кухня</h3>
+              <p class="card__text">
+                Коллекционный чай, прохладительные напитки, европейские и итальянские блюда. Возможность заказать еду навынос или доставку через сервис Яндекс.Еда.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. ATMOSPHERE & ZONES SECTION -->
+    <section class="section section--features" id="features">
+      <div class="wrap">
+        <div class="section-head reveal-on-scroll">
+          <span class="section-kicker">Зоны и атмосфера</span>
+          <h2 class="section-title">Создано для качественного отдыха</h2>
+          <p class="section-desc">
+            Каждая зона Hookah Lounge продумана до мелочей: от акустики до эргономики посадки.
+          </p>
+        </div>
+
+        <div class="features-split reveal-on-scroll">
+          <div class="features-media tilt-card">
+            <img src="assets/images/screens-zone.jpg" alt="Зона экранов Hookah Lounge" id="feature-img" class="features-main-img" loading="lazy">
+            <div class="features-media-overlay">
+              <span class="badge-accent" id="feature-badge">6 экранов высокой четкости</span>
+            </div>
+          </div>
+
+          <div class="features-nav-list">
+            <div class="feature-row active" data-feature-img="assets/images/screens-zone.jpg" data-feature-badge="6 экранов высокой четкости">
+              <div class="f-num">01</div>
+              <div class="f-text">
+                <h4>Спортивные трансляции и кинопросмотры</h4>
+                <p>Транслируем ключевые футбольные дерби, бои UFC и мировые чемпионаты. Отличный обзор с каждого стола в зале.</p>
+              </div>
+            </div>
+
+            <div class="feature-row" data-feature-img="assets/images/ps5-zone.jpg" data-feature-badge="Консоли PlayStation 5">
+              <div class="f-num">02</div>
+              <div class="f-text">
+                <h4>Игровая зона с PlayStation 5</h4>
+                <p>Любимые спортивные симуляторы (EA FC, UFC, Mortal Kombat) для веселых дуэлей и командных турниров с друзьями.</p>
+              </div>
+            </div>
+
+            <div class="feature-row" data-feature-img="assets/images/hookah-detail.jpg" data-feature-badge="Миксология и бленды">
+              <div class="f-num">03</div>
+              <div class="f-text">
+                <h4>Широкий выбор табаков и миксология</h4>
+                <p>Топовые бренды табака (Blackburn, Chabacco, Хулиган и др.). Мастера помогут составить микс точно под ваши предпочтения.</p>
+              </div>
+            </div>
+
+            <div class="feature-row" data-feature-img="assets/images/tea-bar.jpg" data-feature-badge="Чайные традиции">
+              <div class="f-num">04</div>
+              <div class="f-text">
+                <h4>Элитный китайский чай и напитки</h4>
+                <p>Правильная чайная подача, раскрывающая вкус чайного листа, согревающие и прохладительные напитки для идеального вечера.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. PHOTO CHAPTERS / REAL GALLERY -->
+    <section class="section section--gallery" id="gallery">
+      <div class="wrap">
+        <div class="section-head reveal-on-scroll">
+          <span class="section-kicker">Фотографии заведения</span>
+          <h2 class="section-title">Интерьер в деталях</h2>
+          <p class="section-subtitle">
+            Реальные кадры из карточки Hookah Lounge на Яндекс Картах. Нажмите на снимок для полноэкранного просмотра.
+          </p>
+        </div>
+
+        <div class="gallery-chapters">
+          
+          <div class="gallery-card card m-zoom tilt-card reveal-on-scroll" data-gallery-src="assets/images/hero-lounge.jpg" data-caption="Основной лаунж-зал с мягкими диванами и экранами">
+            <img src="assets/images/hero-lounge.jpg" alt="Лаунж зал" loading="lazy">
+            <div class="gallery-card__info">
+              <h4>Основной зал</h4>
+              <span>Камерная посадка до 6 столов</span>
+            </div>
+          </div>
+
+          <div class="gallery-card card m-zoom tilt-card reveal-on-scroll" data-gallery-src="assets/images/ps5-zone.jpg" data-caption="Зона с консолями PlayStation 5">
+            <img src="assets/images/ps5-zone.jpg" alt="PlayStation 5" loading="lazy">
+            <div class="gallery-card__info">
+              <h4>Игровая зона PS5</h4>
+              <span>Консоли нового поколения</span>
+            </div>
+          </div>
+
+          <div class="gallery-card card m-zoom tilt-card reveal-on-scroll" data-gallery-src="assets/images/screens-zone.jpg" data-caption="6 экранов для спортивных матчей и фильмов">
+            <img src="assets/images/screens-zone.jpg" alt="Спортивные экраны" loading="lazy">
+            <div class="gallery-card__info">
+              <h4>6 экранов трансляций</h4>
+              <span>Футбол, UFC и кино</span>
+            </div>
+          </div>
+
+          <div class="gallery-card card m-zoom tilt-card reveal-on-scroll" data-gallery-src="assets/images/tea-bar.jpg" data-caption="Китайский чай и барная стойка">
+            <img src="assets/images/tea-bar.jpg" alt="Чайный бар" loading="lazy">
+            <div class="gallery-card__info">
+              <h4>Коллекционный чай</h4>
+              <span>Широкая чайная карта</span>
+            </div>
+          </div>
+
+          <div class="gallery-card card m-zoom tilt-card reveal-on-scroll" data-gallery-src="assets/images/hookah-detail.jpg" data-caption="Качественные миксы и густой пар">
+            <img src="assets/images/hookah-detail.jpg" alt="Паровые коктейли" loading="lazy">
+            <div class="gallery-card__info">
+              <h4>Табачные бленды</h4>
+              <span>Blackburn, Chabacco, Хулиган</span>
+            </div>
+          </div>
+
+          <div class="gallery-card card m-zoom tilt-card reveal-on-scroll" data-gallery-src="assets/images/entrance.jpg" data-caption="Вход в заведение: г. Шахты, ул. Советская 188А">
+            <img src="assets/images/entrance.jpg" alt="Вход Советская 188А" loading="lazy">
+            <div class="gallery-card__info">
+              <h4>Входная группа</h4>
+              <span>Советская ул., 188А</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. VERIFIED REVIEWS SECTION -->
+    <section class="section" id="reviews">
+      <div class="wrap">
+        <div class="section-head reveal-on-scroll">
+          <span class="section-kicker">Отзывы гостей</span>
+          <h2 class="section-title">Оценка 5.0 на Яндекс Картах</h2>
+          <p class="section-desc">
+            Подлинные отзывы посетителей, оставивших оценку на официальной странице организации.
+          </p>
+        </div>
+
+        <div class="reviews-grid">
+          
+          <div class="card review-card tilt-card reveal-on-scroll">
+            <div class="review-card__header">
+              <div class="review-author">
+                <span class="author-avatar">М</span>
+                <div>
+                  <h4 class="author-name">Максим</h4>
+                  <span class="review-rating">★★★★★</span>
+                </div>
+              </div>
+              <span class="source-badge">Яндекс Карты</span>
+            </div>
+            <p class="review-body">
+              «Посетили впервые это заведение, персонал общительный, дружелюбный и помогли с выбором кальяна. Обслуживание на высшем уровне, большой ассортимент напитков, еды, сборки кальяна (подобрали шикарный кальян, очень понравился). Интерьер завораживающий и уютный. Можно отдохнуть как компанией, так и вдвоем, советуем, не пожалеете. Мы тут не последний раз)»
+            </p>
+            <div class="review-card__footer">
+              <span>Октябрь 2025</span>
+              <span class="tag-accent">Отдых компанией & вдвоем</span>
+            </div>
+          </div>
+
+          <div class="card review-card tilt-card reveal-on-scroll">
+            <div class="review-card__header">
+              <div class="review-author">
+                <span class="author-avatar">Е</span>
+                <div>
+                  <h4 class="author-name">Егор Вдовин</h4>
+                  <span class="review-rating">★★★★★</span>
+                </div>
+              </div>
+              <span class="source-badge">Яндекс Карты</span>
+            </div>
+            <p class="review-body">
+              «Всем привет, кто читает этот отзыв) Место весьма приятное и уютное. Подходит как для шумной компании так и для походов в дуо (для примера своей второй половинкой). Персонал отзывчивый, поможет подобрать все что Вам хочется. Можно заказывать еду в других ресторанах... Можете посмотреть фильмы в укромных уголках или просто порубиться в приставку с огрОООмными экранами на удобных диванчиках. Шикарный китайский чай и хороший алкоголь. Всем довольны) Место 10/10!»
+            </p>
+            <div class="review-card__footer">
+              <span>Октябрь 2025</span>
+              <span class="tag-accent">PS5 · Чай · Фильмы</span>
+            </div>
+          </div>
+
+          <div class="card review-card tilt-card reveal-on-scroll">
+            <div class="review-card__header">
+              <div class="review-author">
+                <span class="author-avatar">Н</span>
+                <div>
+                  <h4 class="author-name">Никита Адзянов</h4>
+                  <span class="review-rating">★★★★★</span>
+                </div>
+              </div>
+              <span class="source-badge">Яндекс Карты</span>
+            </div>
+            <p class="review-body">
+              «Недавно посетил эту кальянную, атмосфера просто потрясающая. Персонал очень дружелюбный и очень помогли с выбором табака и подробно объяснили все нюансы, у нас был запрос «что-то необычное». Кальян был приготовлен идеально, дым мягкий и насыщенный, а вкусы просто бомба! Обязательно вернусь сюда с друзьями, потому что это место однозначно заслуживает внимания. Рекомендую всем!»
+            </p>
+            <div class="review-card__footer">
+              <span>Август 2025</span>
+              <span class="tag-accent">Вкус бомба · Мягкий дым</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="reviews-more reveal-on-scroll">
+          <a href="https://yandex.ru/maps/org/hookah_lounge/227920984604/?ll=40.206678%2C47.713402&z=16" target="_blank" rel="noopener noreferrer" class="link">
+            <span>Смотреть все 51+ отзыв на Яндекс Картах</span>
+            <i data-lucide="arrow-up-right"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. FAQ ACCORDION -->
+    <section class="section section--faq" id="faq">
+      <div class="wrap max-w-narrow">
+        <div class="section-head text-center reveal-on-scroll">
+          <span class="section-kicker">Вопросы и ответы</span>
+          <h2 class="section-title">Часто задаваемые вопросы</h2>
+        </div>
+
+        <div class="faq-list reveal-on-scroll">
+          
+          <div class="card faq-card">
+            <button class="faq-head" aria-expanded="false">
+              <span>Нужно ли бронировать столик заранее?</span>
+              <span class="faq-icon"><i data-lucide="plus"></i></span>
+            </button>
+            <div class="faq-body">
+              <p>Да, настоятельно рекомендуем! В заведении всего до 6 столов для поддержания уютной приватной атмосферы. Чтобы занять столик с PS5 или у большого экрана, лучше позвонить по номеру <a href="tel:+79950919192">+7 (995) 091-91-92</a> заранее.</p>
+            </div>
+          </div>
+
+          <div class="card faq-card">
+            <button class="faq-head" aria-expanded="false">
+              <span>Какие игры доступны на PlayStation 5?</span>
+              <span class="faq-icon"><i data-lucide="plus"></i></span>
+            </button>
+            <div class="faq-body">
+              <p>Установлены популярные спортивные симуляторы (футбол, UFC), файтинги (Mortal Kombat, Tekken) и командные кооперативные игры. Играть можно прямо за своим столиком на большом экране.</p>
+            </div>
+          </div>
+
+          <div class="card faq-card">
+            <button class="faq-head" aria-expanded="false">
+              <span>Можно ли заказать еду или принести свою?</span>
+              <span class="faq-icon"><i data-lucide="plus"></i></span>
+            </button>
+            <div class="faq-body">
+              <p>В заведении действует меню европейской и итальянской кухни, доступен заказ навынос и быстрая доставка блюд через Яндекс.Еду. Также гости могут заказывать блюда из других ресторанов города к своему столу.</p>
+            </div>
+          </div>
+
+          <div class="card faq-card">
+            <button class="faq-head" aria-expanded="false">
+              <span>Какие правила посещения действуют в лаунже?</span>
+              <span class="faq-icon"><i data-lucide="plus"></i></span>
+            </button>
+            <div class="faq-body">
+              <p>Вход строго 18+ (при себе желательно иметь документ, подтверждающий возраст). В соответствии с нормами заведения, вход с домашними животными запрещен. Принимается оплата банковскими картами и наличными, работает бесплатный Wi-Fi.</p>
+            </div>
+          </div>
+
+          <div class="card faq-card">
+            <button class="faq-head" aria-expanded="false">
+              <span>Какой график работы в выходные дни?</span>
+              <span class="faq-icon"><i data-lucide="plus"></i></span>
+            </button>
+            <div class="faq-body">
+              <p>В пятницу и субботу мы работаем до 04:30 утра. С воскресенья по четверг — с 18:00 до 03:30 ночи.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. VISIT & SCHEDULE SECTION -->
+    <section class="section" id="visit">
+      <div class="wrap">
+        <div class="visit-panel card tilt-card reveal-on-scroll">
+          
+          <div class="visit-panel__info">
+            <span class="section-kicker">Информация для гостей</span>
+            <h2 class="visit-title">Ждем вас каждый вечер</h2>
+            
+            <div class="visit-details">
+              <div class="v-detail">
+                <span class="v-detail__label">Адрес</span>
+                <strong class="v-detail__value">г. Шахты, ул. Советская, 188А</strong>
+              </div>
+              <div class="v-detail">
+                <span class="v-detail__label">Бронь столов</span>
+                <a href="tel:+79950919192" class="v-phone-link">+7 (995) 091-91-92</a>
+              </div>
+              <div class="v-detail">
+                <span class="v-detail__label">ВКонтакте</span>
+                <a href="https://vk.com/hookah_lounge_shahty" target="_blank" rel="noopener noreferrer" class="link">
+                  vk.com/hookah_lounge_shahty
+                </a>
+              </div>
+              <div class="v-detail">
+                <span class="v-detail__label">Правила</span>
+                <span class="v-rules-text">Строго 18+ · Без животных · Оплата картой и наличными · Бесплатный Wi-Fi</span>
+              </div>
+            </div>
+
+            <!-- Schedule Table with Real Hours -->
+            <div class="schedule-table">
+              <div class="schedule-table__head">Режим работы</div>
+              <div class="schedule-row" data-day="1">
+                <span class="s-day">Понедельник</span>
+                <span class="s-time">18:00 — 03:30</span>
+              </div>
+              <div class="schedule-row" data-day="2">
+                <span class="s-day">Вторник</span>
+                <span class="s-time">18:00 — 03:30</span>
+              </div>
+              <div class="schedule-row" data-day="3">
+                <span class="s-day">Среда</span>
+                <span class="s-time">18:00 — 03:30</span>
+              </div>
+              <div class="schedule-row" data-day="4">
+                <span class="s-day">Четверг</span>
+                <span class="s-time">18:00 — 03:30</span>
+              </div>
+              <div class="schedule-row s-weekend" data-day="5">
+                <span class="s-day">Пятница <span class="tag-night">Weekend</span></span>
+                <span class="s-time">18:00 — 04:30</span>
+              </div>
+              <div class="schedule-row s-weekend" data-day="6">
+                <span class="s-day">Суббота <span class="tag-night">Weekend</span></span>
+                <span class="s-time">18:00 — 04:30</span>
+              </div>
+              <div class="schedule-row" data-day="0">
+                <span class="s-day">Воскресенье</span>
+                <span class="s-time">18:00 — 03:30</span>
+              </div>
+            </div>
+
+            <div class="visit-actions">
+              <button class="btn btn--primary" id="book-btn-visit">
+                <span>Забронировать стол</span>
+              </button>
+              <a href="https://yandex.ru/maps/org/hookah_lounge/227920984604/?ll=40.206678%2C47.713402&z=16" target="_blank" rel="noopener noreferrer" class="btn btn--outline">
+                <i data-lucide="navigation"></i>
+                <span>Построить маршрут</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Yandex Map Frame -->
+          <div class="visit-panel__map">
+            <iframe 
+              src="https://yandex.ru/map-widget/v1/?orgpage%5Bid%5D=227920984604&ll=40.206678%2C47.713402&z=16" 
+              width="100%" 
+              height="100%" 
+              frameborder="0" 
+              allowfullscreen="true" 
+              title="Hookah Lounge на Яндекс Картах"
+              loading="lazy">
+            </iframe>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Editorial Footer -->
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <div class="footer__left">
+        <span class="footer__brand">HOOKAH LOUNGE</span>
+        <span class="footer__copy">г. Шахты, ул. Советская, 188А. Вход строго 18+. Все права защищены.</span>
+      </div>
+      <div class="footer__links">
+        <a href="https://yandex.ru/maps/org/hookah_lounge/227920984604/?ll=40.206678%2C47.713402&z=16" target="_blank" rel="noopener noreferrer" class="link">Яндекс Карты</a>
+        <a href="https://vk.com/hookah_lounge_shahty" target="_blank" rel="noopener noreferrer" class="link">ВКонтакте</a>
+        <a href="tel:+79950919192" class="link">+7 (995) 091-91-92</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal Booking (Tactile & Fast) -->
+  <div class="modal" id="modal-booking" aria-hidden="true" role="dialog">
+    <div class="modal__overlay" id="modal-overlay"></div>
+    <div class="modal__dialog card">
+      <button class="modal__close" id="modal-close" aria-label="Закрыть">
+        <i data-lucide="x"></i>
+      </button>
+
+      <div class="modal__head">
+        <span class="section-kicker">Бронирование</span>
+        <h3 class="modal__title">Забронировать стол</h3>
+        <p class="modal__desc">В заведении до 6 столов. Выберите удобное время или позвоните напрямую.</p>
+      </div>
+
+      <form id="form-booking" class="modal__form">
+        <div class="field">
+          <label for="f-name">Ваше имя</label>
+          <input type="text" id="f-name" required placeholder="Иван">
+        </div>
+
+        <div class="field">
+          <label for="f-phone">Телефон</label>
+          <input type="tel" id="f-phone" required placeholder="+7 (995) 000-00-00" value="+7 ">
+        </div>
+
+        <div class="field-grid">
+          <div class="field">
+            <label for="f-date">Дата</label>
+            <input type="date" id="f-date" required>
+          </div>
+          <div class="field">
+            <label for="f-time">Время (с 18:00)</label>
+            <select id="f-time" required>
+              <option value="18:00">18:00</option>
+              <option value="19:00">19:00</option>
+              <option value="20:00" selected>20:00</option>
+              <option value="21:00">21:00</option>
+              <option value="22:00">22:00</option>
+              <option value="23:00">23:00</option>
+              <option value="00:00">00:00</option>
+              <option value="01:00">01:00</option>
+              <option value="02:00">02:00</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="f-zone">Предпочтительная зона</label>
+          <select id="f-zone">
+            <option value="Зона PS5">Зона с приставкой PlayStation 5</option>
+            <option value="У больших экранов">У больших экранов (матчи / кино)</option>
+            <option value="Диван для двоих">Уютный диван для двоих</option>
+            <option value="Любой свободный">Любой свободный стол</option>
+          </select>
+        </div>
+
+        <div class="modal__actions">
+          <button type="submit" class="btn btn--primary full-width">
+            <span>Подтвердить бронь</span>
+          </button>
+          <a href="tel:+79950919192" class="btn btn--outline full-width">
+            <i data-lucide="phone"></i>
+            <span>Позвонить +7 (995) 091-91-92</span>
+          </a>
+        </div>
+      </form>
+
+      <div class="modal__success" id="modal-success" style="display: none;">
+        <div class="success-icon"><i data-lucide="check"></i></div>
+        <h4>Заявка отправлена</h4>
+        <p>Администратор свяжется с вами для подтверждения или наберите номер для мгновенного бронирования.</p>
+        <div class="success-actions">
+          <a href="tel:+79950919192" class="btn btn--primary full-width" style="margin-top: 1rem;">
+            <i data-lucide="phone"></i>
+            <span>Набрать +7 (995) 091-91-92</span>
+          </a>
+          <a href="https://vk.com/hookah_lounge_shahty" target="_blank" rel="noopener noreferrer" class="btn btn--outline full-width" style="margin-top: 0.5rem;">
+            <i data-lucide="message-circle"></i>
+            <span>Написать во ВКонтакте</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox for Photo Chapters -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog">
+    <div class="lightbox__overlay" id="lightbox-overlay"></div>
+    <div class="lightbox__container">
+      <button class="lightbox__close" id="lightbox-close" aria-label="Закрыть">
+        <i data-lucide="x"></i>
+      </button>
+      <button class="lightbox__nav prev" id="lightbox-prev" aria-label="Назад">
+        <i data-lucide="chevron-left"></i>
+      </button>
+      <button class="lightbox__nav next" id="lightbox-next" aria-label="Вперед">
+        <i data-lucide="chevron-right"></i>
+      </button>
+      <div class="lightbox__frame">
+        <img src="" alt="Фото интерьера" id="lightbox-img">
+      </div>
+      <div class="lightbox__caption" id="lightbox-caption"></div>
+    </div>
+  </div>
+
+  <script src="motion.js"></script>
+</body>
+</html>
